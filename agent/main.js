@@ -9,7 +9,6 @@ const _ = require('lodash'),
 const ENDPOINT = 'https://img.soilz.net/__bs__/post';
 const SAMPLE_IMAGES = fs.readdirSync('images');
 
-
 function choice(inArr) {
   return inArr[Math.floor(Math.random() * inArr.length)];
 }

@@ -8,13 +8,13 @@ module.exports = {
   runStartTime: new Date().toString(),
 
   server: {
-    region: 'us-west-1',
+    region: 'us-west-2',
     instances: {
-      count: 5,
-      type: 'c4.8xlarge',
+      count: 3,
+      type: 'm4.16xlarge',
       costPerHour: {
-        retail: 1.993,
-        reserved: 1.273,
+        retail: 3.2,
+        reserved: 1.850,
       },
     },
     rds: {
@@ -27,10 +27,10 @@ module.exports = {
   },
 
   client: {
-    region: 'us-west-1',
+    region: 'us-west-2',
     instances: {
       count: 4,
-      type: 't2.xlarge',
+      type: 'r4.xlarge',
     },
   },
 };

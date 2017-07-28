@@ -41,7 +41,7 @@ function convert(inputFile, outFile, args) {
     fs.unlinkSync(outFile);
   } catch (e) { }
 
-  const cmdLine = `convert ${json(inputFile)} ${args} ${json(outFile)}`;
+  const cmdLine = `convert ${json(inputFile)} -limit thread 8 ${args} ${json(outFile)}`;
   console.error(`spawn: ${cmdLine}`);
 
   const rv = spawnSync(cmdLine, {

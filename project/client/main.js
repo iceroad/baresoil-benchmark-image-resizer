@@ -27,6 +27,7 @@ $(document).ready(function main() {
       processData: false,
       success: function(data, textStatus, jqXHR) {
         data = data || {};
+        console.log('Received server response:', data);
 
         if (data.thumbnail) {
           $('#thumbnail-image-size').text(Number(data.thumbnail.fileSize).toLocaleString());
