@@ -3,7 +3,7 @@ function configureCharts() {
   Chart.defaults.global.legend.position = 'bottom';
   Chart.defaults.global.elements.line.tension = 0;
   Chart.defaults.global.elements.line.fill = false;
-  Chart.defaults.global.defaultFontFamily = 'Open Sans';
+  Chart.defaults.global.defaultFontFamily = 'Open Sans, Helvetica, Verdana, sans-serif';
 }
 
 function main() {
@@ -15,7 +15,6 @@ function main() {
   new Chart('new_requests_over_time', DATA.RequestStats.requestsMadeStats);
   new Chart('image_bytes_over_time', DATA.RequestStats.imgBytes);
   new Chart('walltime_per_image_over_time', DATA.RequestStats.serverWalltimePerImage);
-
 
   $('.format-number').each(function() {
     var val = parseInt($(this).text(), 10);
