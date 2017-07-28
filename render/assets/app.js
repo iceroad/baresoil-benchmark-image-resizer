@@ -1,5 +1,4 @@
 function configureCharts() {
-  Chart.defaults.global.animation = false;
   Chart.defaults.global.legend.position = 'bottom';
   Chart.defaults.global.elements.line.tension = 0;
   Chart.defaults.global.elements.line.fill = false;
