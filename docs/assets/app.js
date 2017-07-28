@@ -14,6 +14,8 @@ function main() {
   new Chart('rtt_latency_over_time', DATA.RequestStats.requestRttStats);
   new Chart('new_requests_over_time', DATA.RequestStats.requestsMadeStats);
   new Chart('image_bytes_over_time', DATA.RequestStats.imgBytes);
+  new Chart('walltime_per_image_over_time', DATA.RequestStats.serverWalltimePerImage);
+
 
   $('.format-number').each(function() {
     var val = parseInt($(this).text(), 10);

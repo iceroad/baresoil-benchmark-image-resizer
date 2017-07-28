@@ -58,6 +58,30 @@ function RequestStats(rows) {
         'Time since start of experiment (seconds)',
         'Image data processed (Gigabytes)'),
     },
+    serverWalltimePerImage: {
+      type: 'line',
+      data: {
+        labels: timestamps,
+        datasets: [
+          {
+            label: 'Median server walltime per image (milliseconds)',
+            data: [],
+          },
+          {
+            label: '95th percentile server walltime per image (milliseconds)',
+            data: [],
+          },
+          {
+            label: '98th percentile server walltime per image (milliseconds)',
+            data: [],
+          },
+
+        ],
+      },
+      options: chartutil.CreateTimeSeries(
+        'Time since start of experiment (seconds)',
+        'Server time per image (milliseconds)'),
+    },
   };
 
   // Filter out request-specific rows.
@@ -96,6 +120,15 @@ function RequestStats(rows) {
     outputs.requestRttStats.data.datasets[0].data.push(rttMedian / 1000);
     outputs.requestRttStats.data.datasets[1].data.push(rttPc95 / 1000);
     outputs.requestRttStats.data.datasets[2].data.push(rttPc98 / 1000);
+
+    // Compute server walltime quantiles.
+    const walltimes = _.sortBy(_.filter(_.map(windowRows, 'walltimeMs')));
+    const walltimeMedian = walltimes[Math.floor(walltimes.length * 0.5)];
+    const walltimePc95 = walltimes[Math.floor(walltimes.length * 0.95)];
+    const walltimePc98 = walltimes[Math.floor(walltimes.length * 0.98)];
+    outputs.serverWalltimePerImage.data.datasets[0].data.push(walltimeMedian);
+    outputs.serverWalltimePerImage.data.datasets[1].data.push(walltimePc95);
+    outputs.serverWalltimePerImage.data.datasets[2].data.push(walltimePc98);
   });
 
   // Group and aggregate over "request_ok" only by the request end time.
@@ -107,16 +140,14 @@ function RequestStats(rows) {
     netOutBytes: 0,
   };
   const requestOkByTime = _.groupBy(reqOkRows, row => quantize(row.time, startTime));
-_.forEach(timestamps, (ts) => {
+  _.forEach(timestamps, (ts) => {
     const windowRows = requestOkByTime[ts] || [];
     agg.imgBytesSent += _.sum(_.map(windowRows, row => row.data.imgBytesPosted));
     agg.imgBytesRecv += _.sum(_.map(windowRows, row => row.data.imgBytesReceived));
     agg.cpuSeconds += _.sum(_.map(windowRows, row => row.data.wallTimeMs));
     agg.netOutBytes += _.sum(_.map(windowRows, row => row.data.bodyRawSize));
-
     outputs.imgBytes.data.datasets[0].data.push(agg.imgBytesSent / (1024 * 1024 * 1024));
   });
-
 
   return outputs;
 }

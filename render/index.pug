@@ -85,10 +85,6 @@ html(lang='en')
               td(class='metric')
                 span= '$' + analysis.Aggregates.bottomLine.costPerHourReserved
                 strong  USD
-
-            tr
-              td AWS Region
-              td(class='metric')= extVariables.client.region
           p.
             #[sup *] Assumes #[strong= extVariables.server.instances.count]
             on-demand EC2
@@ -99,8 +95,6 @@ html(lang='en')
             per hour, ELB costs of $#[strong= extVariables.server.elb.costPerHour]
             per hour and $#[strong= extVariables.server.elb.costPerGB] per gigabyte
             transferred.
-
-
 
       //-
       //- EXPERIMENT CONFIG
@@ -176,26 +170,34 @@ html(lang='en')
         div(class='col-xs-12 text-center')
           h3 Request Statistics
           hr
-        div(class='col-xs-12 col-md-4 bottom-spacer')
-          h4 Round-trip Latency
-          p.
-            Time from starting the HTTP POST request to receiving a successful
-            response. Requests are grouped by the time they were started at the
-            client, not when the response was successfully received.
-          canvas(id='rtt_latency_over_time')
-        div(class='col-xs-12 col-md-4 bottom-spacer')
+      div(class='row')
+        div(class='col-xs-12 col-md-5 col-md-offset-1 bottom-spacer')
           h4 Request Rate
           p.
             Total number of requests that were initiated to the server
             in each time window, aggregated over all clients.
           canvas(id='new_requests_over_time')
-        div(class='col-xs-12 col-md-4 bottom-spacer')
+        div(class='col-xs-12 col-md-5 bottom-spacer')
           h4 Image Bytes Processed
           p.
             Total amount of image data processed by the cluster at each time
             window. Image data is only counted when it is successfully
             processed by the cluster and returned, at the time of return.
           canvas(id='image_bytes_over_time')
+      div(class='row')
+        div(class='col-xs-12 col-md-5 col-md-offset-1 bottom-spacer')
+          h4 Server Time per Image
+          p.
+            Wall time spent by server on resizing each image, as reported by
+            the server.
+          canvas(id='walltime_per_image_over_time')
+        div(class='col-xs-12 col-md-5 bottom-spacer')
+          h4 Round-trip Latency
+          p.
+            Time from starting the HTTP POST request to receiving a successful
+            response. Requests are grouped by the time they were started at the
+            client, not when the response was successfully received.
+          canvas(id='rtt_latency_over_time')
 
       //-
       //- CLIENT HEALTH
@@ -204,19 +206,21 @@ html(lang='en')
         div(class='col-xs-12 text-center')
           h3 Client Tier Statistics
           hr
-        div(class='col-xs-12 col-md-4 bottom-spacer')
+      div(class='row')
+        div(class='col-xs-12 col-md-5 col-md-offset-1 bottom-spacer')
           h4 Client CPU Usage
           p.
             Instances in the client tier should not be overloaded in order to ensure that server response measurements are not biased. The following time series plot shows average CPU usage for each server in the client tier.
           canvas(id='client_cpu_over_time')
 
-        div(class='col-xs-12 col-md-4')
+        div(class='col-xs-12 col-md-5 bottom-spacer')
           h4 Client Memory Usage
           p.
             The following time series plot shows the percentage of system memory used per host, as free by node's builtin #[code os] module.
           canvas(id='client_memory_over_time')
 
-        div(class='col-xs-12 col-md-4')
+      div(class='row')
+        div(class='col-xs-12 col-md-5 col-md-offset-1 bottom-spacer')
           h4 Concurrent Agents
           p.
             Each agent is an independent process running on one of the client tier instances that makes a continuous stream of requests to the server. The following time series plot shows the total number of active agents over time for all client tier hosts.
