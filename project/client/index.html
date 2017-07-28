@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Resizer API</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Image Resizer</h1>
+      <h2>API Demo</h2>
+      <form
+          id="file-upload-form"
+          action="/__bs__/post"
+          method="POST"
+          enctype="multipart/form-data">
+        <input type="file" id="file-input" name="photo" accept="image/*">
+        <input type="submit" id="submit-image-button">
+        <p class="error" id="error-message"></p>
+      </form>
+      <div class="results">
+        <div class="hidden" id="preview-thumbnail">
+          <h3>Square thumbnail</h3>
+          <img id="thumbnail-image-preview">
+          <div>
+            <strong>File size: </strong>
+            <span id="thumbnail-image-size"></span> bytes
+          </div>
+        </div>
+        <div class="hidden" id="preview-small">
+          <h3>Small</h3>
+          <img id="small-image-preview">
+          <div>
+            <strong>File size: </strong>
+            <span id="small-image-size"></span> bytes
+          </div>
+        </div>
+        <div class="hidden" id="preview-metadata">
+          <h3>EXIF Metadata</h3>
+          <pre><code id="exif-json"></code></pre>
+        </div>
+      </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
