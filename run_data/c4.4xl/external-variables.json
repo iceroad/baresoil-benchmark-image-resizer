@@ -1,0 +1,29 @@
+{
+  "hostname": "redbox",
+  "runStartTime": "Fri Aug 04 2017 10:20:11 GMT-0700 (PDT)",
+  "server": {
+    "region": "us-east-1",
+    "instances": {
+      "count": 12,
+      "type": "c4.4xlarge",
+      "costPerHour": {
+        "retail": 0.796,
+        "reserved": 0.473
+      }
+    },
+    "rds": {
+      "costPerHour": 0.095
+    },
+    "elb": {
+      "costPerHour": 0.025,
+      "costPerGB": 0.008
+    }
+  },
+  "client": {
+    "region": "us-east-1",
+    "instances": {
+      "count": 5,
+      "type": "t2.large"
+    }
+  }
+}

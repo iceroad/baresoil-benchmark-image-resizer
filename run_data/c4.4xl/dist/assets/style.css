@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(./UbuntuMono-regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(./cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(./k3k702ZOKiLJc3WVjuplzInF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
+}
+
+canvas {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+h4 {
+  margin-bottom: 2em;
+}
+
+p {
+  line-height: 150%;
+}
+
+.bottom-spacer {
+  margin-bottom: 25px;
+}
+
+.vspace {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.metrics-table td {
+  padding: 5px;
+}
+
+.metrics-table .metric {
+  font-family: 'Ubuntu Mono', fixed;
+  font-size: 18px;
+  text-align: right;
+}
