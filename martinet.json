@@ -1,0 +1,19 @@
+{
+  "paths": {
+    "src": "render",
+    "dist": "docs"
+  },
+  "global": {
+    "styles": ["style.less"],
+    "scripts": [
+      "app.js"
+    ]
+  },
+  "pages": [
+    {
+      "src": "index.pug",
+      "data": ["data/composite.json"],
+      "dist": "index.html"
+    }
+  ]
+}
