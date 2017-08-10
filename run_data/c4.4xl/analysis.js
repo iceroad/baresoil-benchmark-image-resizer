@@ -1,4 +1,4 @@
-{
+window.DATA = {
   "Aggregates": {
     "numRequestsMade": 1896,
     "numRequestsOk": 1394,
@@ -731,4 +731,4 @@
       }
     }
   }
-}
+};
