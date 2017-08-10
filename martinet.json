@@ -4,7 +4,7 @@
     "dist": "docs"
   },
   "global": {
-    "styles": ["style.less"],
+    "styles": ["style/main.less"],
     "scripts": ["app.js"]
   },
   "pages": [
@@ -13,12 +13,6 @@
       "data": ["latest/composite.json"],
       "scripts": ["latest/analysis.js"],
       "dist": "index.html"
-    },
-    {
-      "src": "index.pug",
-      "data": ["runs/c4.4xl/composite.json"],
-      "scripts": ["runs/c4.4xl/analysis.js"],
-      "dist": "c4.4xl/index.html"
     }
   ]
 }

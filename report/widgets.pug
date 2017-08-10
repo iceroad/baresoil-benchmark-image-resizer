@@ -1,0 +1,77 @@
+include ./predef-links
+
+mixin ExtLink(url, text)
+  span(class='extlink')
+    a(href=url, target='_blank', rel='nofollow')!= text
+    span(class='glyphicon glyphicon-new-window')
+
+
+mixin ExtLinkOwned(url, text)
+  span(class='extlink')
+    a(href=url, target='_blank')!= text
+    span(class='glyphicon glyphicon-new-window')
+
+
+mixin DropAnchor(anchorName)
+  span(class='pull-right hidden-print')
+    a(href='#' + anchorName)
+      span(class='anchor-link-icon glyphicon glyphicon-link')
+
+
+mixin AnchoredHeadingBody(text, anchorName, textStyle)
+  +DropAnchor(anchorName)
+  if textStyle == 'mono'
+    span
+      code!= text
+  else
+    span!= text
+
+mixin AnchoredHeading(level, text, anchorName, textStyle)
+  div(class='anchored-heading')
+    a(class='anchor-offset', name=anchorName)
+    if level == 1
+      h1 #[+AnchoredHeadingBody(text, anchorName, textStyle)]
+    if level == 2
+      h2 #[+AnchoredHeadingBody(text, anchorName, textStyle)]
+    if level == 3
+      h3 #[+AnchoredHeadingBody(text, anchorName, textStyle)]
+    if level == 4
+      h4 #[+AnchoredHeadingBody(text, anchorName, textStyle)]
+    if level == 5
+      h5 #[+AnchoredHeadingBody(text, anchorName, textStyle)]
+    hr
+
+mixin CommandLine(text, cls)
+  pre(class='command-line')
+    span(class='prompt') &gt;&nbsp;
+    code(class='cmd')=text
+
+mixin ie
+  span
+    em i.e.
+    span ,
+
+mixin eg
+  span
+    em e.g.
+    span ,
+
+mixin etc
+  span
+    em etc.
+
+mixin Figure(imgUrl, caption)
+  div(class='figure-container')
+    div(class='figure')
+      img(src=imgUrl, title=caption, alt=caption)
+    div(class='caption')= caption
+
+mixin Placeholder(text)
+  div(class='placeholder-box')
+    strong TODO:&nbsp;
+    span= text
+
+mixin Note(text)
+  div(class='note')
+    p= text
+

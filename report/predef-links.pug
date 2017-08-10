@@ -1,0 +1,41 @@
+mixin ExtLinkCordova
+  +ExtLink('https://cordova.apache.org', 'Apache Cordova')
+
+mixin ExtLinkDocker
+  +ExtLink('https://docs.docker.com/engine/installation/', 'Docker Engine')
+
+mixin ExtLinkPostgres
+  +ExtLink('https://www.postgresql.org/download/', 'PostgreSQL')
+
+mixin ExtLinkNode
+  +ExtLink('https://nodejs.org/en/download/', 'node.js')
+
+mixin ExtLinkVisualCpp
+  +ExtLink('http://landinghub.visualstudio.com/visual-cpp-build-tools', 'Visual C++ 2015 Build Tools')
+
+mixin ExtLinkOpenSSH
+  +ExtLink('https://www.openssh.com/', 'OpenSSH')
+
+mixin ExtLinkOpenSSHWindows
+  +ExtLink('https://github.com/PowerShell/Win32-OpenSSH/releases', 'Win32-OpenSSH')
+
+mixin ExtLinkPacker
+  +ExtLink('https://packer.io/', 'Packer')
+
+mixin ExtLinkTerraform
+  +ExtLink('https://terraform.io/', 'Terraform')
+
+mixin ExtLinkAWSIamConsole
+  +ExtLink('https://console.aws.amazon.com/iam/home#/home', 'IAM Console')
+
+mixin ExtLinkLatestBenchmark(title)
+  +ExtLinkOwned('https://iceroad.github.io/baresoil-benchmark-image-resizer/', title || 'performance benchmark')
+
+mixin ExtLinkOpenNewIssue(title)
+  +ExtLinkOwned('https://github.com/iceroad/baresoil/issues/new', title || 'open a Github issue')
+
+mixin ExtLinkWiki(article, title)
+  +ExtLink('https://en.wikipedia.org/wiki/' + article, title)
+
+mixin ExtLinkBenchoid
+  +ExtLink('https://github.com/iceroad/node-benchoid', 'benchoid')
