@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+  head
+    title Baresoil Image Resizing Benchmark (AWS)
+    meta(charset='utf-8')
+    meta(name='description', content= extVariables.runDesc)
+    meta(name='last-modified', content= extVariables.runStartTime)
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+  body
+    div(class='container-fluid')
+      //-
+      //- TITLE
+      //-
+      include ./content/header.pug
+
+      //-
+      //- INTRODUCTION
+      //-
+      include ./content/intro.pug
+
+      //-
+      //- EXPERIMENT CONFIG
+      //-
+      include ./content/config.pug
+
+      //-
+      //- RESULTS
+      //-
+      include ./content/results.pug
+
+      //- FOOTER
+      hr
+      footer(class='footer').
+        Copyright &copy; 2017 #[a(href='http://lahiri.me/') Mayank Lahiri]
+

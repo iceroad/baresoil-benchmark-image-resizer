@@ -1,0 +1,66 @@
+div(class='row')
+  div(class='col-xs-12 col-md-6 col-md-offset-1 bottom-spacer')
+    h3 Introduction
+    p.
+      #[a(href='https://www.baresoil.org/') Baresoil] can be used to quickly
+      turn standard command-line programs into scalable web services. Consider
+      the case of building a web API that accepts photo uploads and returns
+      cleaned-up thumbnails of the image, as well as Exif camera metadata like
+      the make and model.
+
+    div(class='figure')
+      img(src='assets/image-resizer-api.png')
+
+    p.
+      In this benchmark, a Baresoil program uses GNU ImageMagick, a common
+      open-source package for processing images, to perform these tasks.
+      The #[a(href='https://github.com/iceroad/baresoil-benchmark-image-resizer/tree/master/project') server-side code] is #[strong 180] lines long, and
+      processes HTTP file uploads in a straightforward way using the ImageMagick #[code convert] command.
+
+    p.
+      Like all #[a(href='https://www.baresoil.org/docs/programming/index.html') Baresoil programs], each socket connection is allocated to its own
+      Linux container, each containing a clean copy of the Baresoil server-side
+      project. This allows server-side programs to be short, often resembling
+      simple shell scripts, but scalable across a cluster of servers. The Baresoil runtime handles the task of ensuring that each connection gets a fresh
+      container.
+
+
+  //-
+  //- SUMMARY
+  //-
+  div(class='col-xs-12 col-md-4')
+    h3 Results
+
+    table(class='table table-compact metrics-table')
+      tr
+        td Images processed per hour
+        td(class='metric format-number')= analysis.Aggregates.bottomLine.imagesPerHour
+
+      tr
+        td Image data processed per hour
+        td(class='metric')
+          span(class='format-number')= analysis.Aggregates.bottomLine.imageDataPerHourGB
+          strong  GB
+
+      tr
+        td Cluster cost per hour (on-demand)#[sup *]
+        td(class='metric')
+          span= '$' + analysis.Aggregates.bottomLine.costPerHourRetail
+          strong  USD
+
+      tr
+        td Cluster cost per hour (reserved)
+        td(class='metric')
+          span= '$' + analysis.Aggregates.bottomLine.costPerHourReserved
+          strong  USD
+    p.
+      #[sup *] Using #[strong= extVariables.server.instances.count]
+      on-demand EC2
+      #[strong= extVariables.server.instances.type]
+      instances  in #[strong= extVariables.server.region], priced at
+      $#[strong= extVariables.server.instances.costPerHour.retail] per hour,
+      RDS on-demand costs of $#[strong= extVariables.server.rds.costPerHour]
+      per hour, ELB costs of $#[strong= extVariables.server.elb.costPerHour]
+      per hour and $#[strong= extVariables.server.elb.costPerGB] per gigabyte
+      transferred.
+

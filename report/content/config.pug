@@ -1,0 +1,74 @@
+div(class='row')
+  div(class='col-xs-12 col-md-6 col-md-offset-1 bottom-spacer')
+    h3 Benchmark Setup
+    hr
+    p.
+      This benchmark load tests a user-uploaded image processing API hosted
+      on a #[a(href='https://www.baresoil.org/') Baresoil] cluster. The image processing performed is basic
+      cropping, image adjustments, and metadata extraction from a JPEG
+      image, using the Unix command-line tool ImageMagick.
+
+
+    p.
+      A Baresoil cluster of the dimensions below is first created on Amazon
+      AWS using the standard Baresoil cluster setup tool. This includes
+      assigning the load balancer to a top-level DNS domain name secured
+      by a TLS certificate.
+
+    p.
+      Then, a separate client tier of #[strong= extVariables.client.instances.count]
+      instances is created in the same AWS region as the server, to generate
+      traffic for the server. Each server in the client tier spawns
+      #[strong= expConfig.numAgents] indepenent processes that each perform
+      the following steps in a loop:
+    ol
+      li.
+        Make an HTTP POST request to the server's DNS name with one of
+        four sample JPEG images, each between 9 and 11 Megabytes.
+      li.
+        Wait for the server to return the resized versions of the image.
+      li.
+        Wait a small amount of time, loop back to step 1.
+
+    p.
+      All requests from the client tier are sent over multipart HTTPS requests
+      via Curl to the top-level domain name of the server cluster. As a result,
+      the benchmarks here are for SSl/TLS-secured traffic.
+
+
+  div(class='col-xs-12 col-md-4 bottom-spacer')
+    h4 Baresoil Cluster
+    table(class='table table-compact metrics-table')
+      tr
+        td Instance Count
+        td(class='metric')= extVariables.server.instances.count
+      tr
+        td Instance Type
+        td(class='metric')= extVariables.server.instances.type
+      tr
+        td AWS Region
+        td(class='metric')= extVariables.server.region
+      tr
+        td Instance cost per hour (on-demand)
+        td(class='metric')
+          span= '$' + extVariables.server.instances.costPerHour.retail
+          strong  USD
+      tr
+        td Instance cost per hour (reserved)
+        td(class='metric')
+          span= '$' + extVariables.server.instances.costPerHour.reserved
+          strong  USD
+
+
+  div(class='col-xs-12 col-md-4 bottom-spacer')
+    h4 Load Generating Instances
+    table(class='table table-compact metrics-table')
+      tr
+        td Instance Count
+        td(class='metric')= extVariables.client.instances.count
+      tr
+        td Instance Type
+        td(class='metric')= extVariables.client.instances.type
+      tr
+        td AWS Region
+        td(class='metric')= extVariables.client.region

@@ -1,0 +1,91 @@
+@import '~bootstrap/less/bootstrap.less';
+@import '~bootswatch/paper/bootswatch.less';
+@import '~bootswatch/paper/variables.less';
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(assets/UbuntuMono-regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(assets/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(assets/k3k702ZOKiLJc3WVjuplzInF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
+}
+
+canvas {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 125%;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+p {
+  line-height: 150%;
+  font-size: 16px;
+}
+
+img {
+  width: 100%;
+}
+
+.bottom-spacer {
+  margin-bottom: 25px;
+}
+
+.vspace {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.metrics-table {
+  background-color: #FFFFE0;
+
+  td {
+    padding: 5px;
+    font-size: 18px;
+
+
+    &:first {
+      max-width: 50%;
+      text-align: left;
+    }
+  }
+
+  .metric {
+    font-family: 'Ubuntu Mono', fixed;
+    font-size: 22px;
+    text-align: right;
+  }
+}
+
+.figure {
+  margin: 1em 0 1em 0;
+  background-color: #efefef;
+}

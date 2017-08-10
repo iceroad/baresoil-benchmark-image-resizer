@@ -1,19 +1,24 @@
 {
   "paths": {
-    "src": "render",
+    "src": "report",
     "dist": "docs"
   },
   "global": {
     "styles": ["style.less"],
-    "scripts": [
-      "app.js"
-    ]
+    "scripts": ["app.js"]
   },
   "pages": [
     {
       "src": "index.pug",
-      "data": ["data/composite.json"],
+      "data": ["latest/composite.json"],
+      "scripts": ["latest/analysis.js"],
       "dist": "index.html"
+    },
+    {
+      "src": "index.pug",
+      "data": ["runs/c4.4xl/composite.json"],
+      "scripts": ["runs/c4.4xl/analysis.js"],
+      "dist": "c4.4xl/index.html"
     }
   ]
 }
