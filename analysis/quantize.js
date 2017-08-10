@@ -1,4 +1,4 @@
-const WINDOW = 20 * 1000;
+const WINDOW = 30 * 1000;
 
 function quantize(time, offset) {
   offset = offset || 0;
