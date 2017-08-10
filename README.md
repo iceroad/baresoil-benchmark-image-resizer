@@ -4,7 +4,7 @@ This benchmark is for reproducibly measuring the real-world performance and cost
 of hosting a simple image processing API on a Baresoil cluster running
 on AWS.
 
-#### [View the latest benchmark result](https://iceroad.github.io/baresoil-benchmark-image-resizer/) · [Baresoil](https://www.baresoil.com/)
+#### [View the latest benchmark result](https://iceroad.github.io/baresoil-benchmark-image-resizer/) · [Baresoil](https://www.baresoil.org/)
 
 The API accepts JPEG image uploads via HTTP POST requests, and uses GNU ImageMagick to return the following results:
 
