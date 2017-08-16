@@ -13,7 +13,7 @@ function Aggregates(rows, extVar, expConfig) {
     imgBytesRecv: _.sum(_.map(rows, row => row.event === 'request_ok' ? row.data.imgBytesReceived : 0)),
     imgBytesSent: _.sum(_.map(rows, row => row.event === 'request_ok' ? row.data.imgBytesPosted : 0)),
     totalTimeSec,
-    totalCpuSeconds: _.sum(_.map(rows, row => row.event === 'request_ok' ? row.data.walltimeMs : 0)),
+    totalCpuSeconds: _.sum(_.map(rows, row => row.event === 'request_ok' ? (row.data.walltimeMs / 1000): 0)),
   };
 
   const imagesPerHour = Math.floor((agg.numRequestsOk / totalTimeSec) * 3600);

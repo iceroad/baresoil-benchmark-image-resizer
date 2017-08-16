@@ -7,7 +7,7 @@ window.DATA = {
     "imgBytesRecv": 109041527,
     "imgBytesSent": 14238775206,
     "totalTimeSec": 419,
-    "totalCpuSeconds": 1270599,
+    "totalCpuSeconds": 1270.5990000000006,
     "bottomLine": {
       "costPerHourRetail": "9.77",
       "costPerHourReserved": "5.90",
