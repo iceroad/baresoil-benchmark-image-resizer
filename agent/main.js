@@ -6,7 +6,7 @@ const _ = require('lodash'),
   spawnSync = require('child_process').spawnSync
   ;
 
-const ENDPOINT = 'https://img.runapp.io/__bs__/post';
+const ENDPOINT = 'https://img.soilz.net/__bs__/post';
 const SAMPLE_IMAGES = fs.readdirSync('images');
 
 function choice(inArr) {
