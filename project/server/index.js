@@ -1,6 +1,7 @@
 const crypto = require('crypto'),
   fs = require('fs'),
   imageMagick = require('./imageMagick'),
+  path = require('path'),
   spawnSync = require('child_process').spawnSync
   ;
 
@@ -57,45 +58,28 @@ module.exports = {
     fs.writeFileSync(filename, outBuffer);
     outBuffer = null;
 
-    // Create a dimension-contrained "small" version.
-    const outFileSmall = `small-${id}.jpg`;
-    const small = imageMagick.convert(filename, outFileSmall, [
-      '-auto-orient',
-      '-resize 640x640',
-      '-normalize',
-      '-quality 70',
-      '-strip',
-    ]);
-
-    // Create a center-cropped square thumbnail.
-    const outFileThumb = `thumbnail-${id}.jpg`;
-    const thumbnail = imageMagick.convert(outFileSmall, outFileThumb, [
-      '-thumbnail 128x128^',
-      '-gravity center',
-      '-extent 128x128',
-      '-quality 50'
-    ]);
-
-    fs.unlinkSync(outFileThumb);
-    fs.unlinkSync(outFileSmall);
-
-    // Get EXIF metadata from input.
-    const exif = imageMagick.getExif(filename);
+    // Spawn the Python module to resize the image.
+    const rv = spawnSync('/usr/bin/python', ['wrap-lambda.py', path.resolve(filename)], {
+      cwd: path.resolve(__dirname, 'lambdasrc'),
+      shell: false,
+      stdio: 'pipe',
+    });
+    const outputJson = JSON.parse(rv.stdout.toString('utf-8'));
 
     // Construct response.
     const response = {
       metadata: {
-        exif,
+        exif: outputJson.exif,
         inputSize,
         walltimeMs: Date.now() - requestStartTime,
       },
       thumbnail: {
-        dataUrl: `data:image/jpeg;base64,${thumbnail.toString('base64')}`,
-        fileSize: thumbnail.length,
+        dataUrl: `data:image/jpeg;base64,${outputJson.thumb_640}`,
+        fileSize: outputJson.thumb_640.length,
       },
       small: {
-        dataUrl: `data:image/jpeg;base64,${small.toString('base64')}`,
-        fileSize: small.length,
+        dataUrl: `data:image/jpeg;base64,${outputJson.thumb_128}`,
+        fileSize: outputJson.thumb_128.length,
       },
     };
 

@@ -46,7 +46,7 @@ $(document).ready(function main() {
         }
 
         if (data.metadata) {
-          const exif = data.metadata.exif || {};
+          const exif = data.metadata || {};
           $('#exif-json').text(JSON.stringify(exif, null, 2));
           $('#preview-metadata').show();
         } else {
