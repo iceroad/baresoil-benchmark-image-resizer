@@ -27,10 +27,8 @@ div(class='row')
       img(src='assets/image-resizer-api.png')
 
     p.
-      In this benchmark, a Baresoil program uses GNU ImageMagick, a common
+      In this benchmark, a Baresoil program uses the Python library Pillow, a common
       open-source package for processing images, to perform these tasks.
-      The #[a(href='https://github.com/iceroad/baresoil-benchmark-image-resizer/tree/master/project') server-side code] is #[strong 180] lines long, and
-      processes HTTP file uploads in a straightforward way using the ImageMagick #[code convert] command.
 
     p.
       Like all #[a(href='https://www.baresoil.org/docs/programming/index.html') Baresoil programs], each socket connection is allocated to its own
