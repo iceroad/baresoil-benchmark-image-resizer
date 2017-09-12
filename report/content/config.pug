@@ -58,6 +58,11 @@ div(class='row')
         td(class='metric')
           span= '$' + extVariables.server.instances.costPerHour.reserved
           strong  USD
+      tr
+        td Instance cost per hour (spot)
+        td(class='metric')
+          span= '$' + extVariables.server.instances.costPerHour.spot
+          strong  USD
 
 
   div(class='col-xs-12 col-md-4 bottom-spacer')
