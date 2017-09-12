@@ -1,7 +1,7 @@
 {
-  "runName": "c4.8xlarge",
-  "runDesc": "c4.8xlarge (5 instances)",
-  "numAgents": "100",
+  "runName": "matched",
+  "runDesc": "matched",
+  "numAgents": 100,
   "warmup": "60000",
-  "steady": "240000"
+  "steady": "360000"
 }
